@@ -6,7 +6,7 @@ variable "resource_group_name" {
 variable "location" {
   type        = string
   description = "The location of the rg"
-  default     = "West Europe"
+  default     = "East US 2"
 }
 variable "environment_name" {
   description = "Name of the environment which is used to generate a short unique hash used in all resources."
