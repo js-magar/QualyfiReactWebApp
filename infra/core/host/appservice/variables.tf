@@ -29,12 +29,6 @@ variable "key_vault_name" {
   description = "The kv name"
   default = ""
 }
-
-variable "managed_identity" {
-  type = bool
-  description = "If a mi is present"
-  default = length(var.key_vault_name) > 0
-}
 // Runtime Properties
 variable "runtime_name" {
   description = "The runtime name for the function."
@@ -108,12 +102,6 @@ variable "function_app_scale_limit" {
   description = "The maximum number of workers."
   type        = number
   default     = -1
-}
-
-variable "linux_fx_version" {
-  description = "The version of Linux FX."
-  type        = string
-  default     = "${var.runtime_name}|${var.runtime_version}"
 }
 
 variable "minimum_elastic_instance_count" {

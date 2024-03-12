@@ -30,12 +30,6 @@ variable "key_vault_name" {
   default = ""
 }
 
-variable "managed_identity" {
-  type = bool
-  description = "If a mi is present"
-  default = length(var.key_vault_name) > 0
-}
-
 variable "storage_account_name" {
   type = string
   description = "The storage account name"
@@ -46,7 +40,9 @@ variable "runtime_name" {
   description = "The runtime name for the function."
   type        = string
   validation {
-    condition     = can(index(["dotnet", "dotnetcore", "dotnet-isolated", "node", "python", "java", "powershell", "custom"], var.runtime_name), "number")
+    condition = can(regex(join("", concat(["^("], [join("|", [ 
+            "dotnet", "dotnetcore", "dotnet-isolated", "node", "python", "java", "powershell", "custom"
+        ])], [")$"])), var.runtime_name))
     error_message = "Invalid runtime name provided. Allowed values are: dotnet, dotnetcore, dotnet-isolated, node, python, java, powershell, custom."
   }
 
@@ -62,7 +58,9 @@ variable "extension_version" {
   type        = string
   default     = "~4"
  validation {
-    condition     = can(index(["~4", "~3", "~2", "~1"], var.extension_version), "number")
+    condition = can(regex(join("", concat(["^("], [join("|", [ 
+            "~4", "~3", "~2", "~1"
+        ])], [")$"])), var.extension_version))
     error_message = "Invalid extensionn version provided."
   }
 }
@@ -114,12 +112,6 @@ variable "function_app_scale_limit" {
   description = "The maximum number of workers."
   type        = number
   default     = -1
-}
-
-variable "linux_fx_version" {
-  description = "The version of Linux FX."
-  type        = string
-  default     = "${var.runtime_name}|${var.runtime_version}"
 }
 
 variable "minimum_elastic_instance_count" {
