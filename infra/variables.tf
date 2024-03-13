@@ -100,17 +100,17 @@ variable "sql_admin_password" {
   description = "SQL Server administrator password"
   sensitive   = true
   validation {
-    condition     = length(var.password) >= 8 && length(var.password) <= 128
+    condition     = length(var.sql_admin_password) >= 8 && length(var.sql_admin_password) <= 128
     error_message = "Password must be between 8 and 128 characters long"
   }
-
+/*
   validation {
     condition     = !regex("^.*(${var.user_name}).*$", var.password)
     error_message = "Password cannot contain the account name of the user"
   }
-
+*/
   validation {
-    condition     = regex("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()-_=+{}|\\[\\];:'\",.<>/?]).{8,128}$", var.password)
+    condition     = regex("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()-_=+{}|\\[\\];:'\",.<>/?]).{8,128}$", var.sql_admin_password)
     error_message = "Password must contain characters from at least three of the following four categories: Latin uppercase letters, Latin lowercase letters, Base 10 digits, Non-alphanumeric characters"
   }
 }
@@ -120,17 +120,12 @@ variable "app_user_password" {
   description = "Application user password"
   sensitive   = true
   validation {
-    condition     = length(var.password) >= 8 && length(var.password) <= 128
+    condition     = length(var.app_user_password) >= 8 && length(var.app_user_password) <= 128
     error_message = "Password must be between 8 and 128 characters long"
   }
 
   validation {
-    condition     = !regex("^.*(${var.user_name}).*$", var.password)
-    error_message = "Password cannot contain the account name of the user"
-  }
-
-  validation {
-    condition     = regex("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()-_=+{}|\\[\\];:'\",.<>/?]).{8,128}$", var.password)
+    condition     = regex("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()-_=+{}|\\[\\];:'\",.<>/?]).{8,128}$", var.app_user_password)
     error_message = "Password must contain characters from at least three of the following four categories: Latin uppercase letters, Latin lowercase letters, Base 10 digits, Non-alphanumeric characters"
   }
 }
