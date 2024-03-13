@@ -1,19 +1,4 @@
 #Creates an Azure API Management instance.
-terraform {
-  required_providers {
-    azapi = {
-      source = "Azure/azapi"
-    }
-  }
-}
-
-provider "azapi" {
-}
-
-provider "azurerm" {
-  features {}
-}
-
 resource "azurerm_api_management" "apim" {
   name                = var.name
   location            = var.location
