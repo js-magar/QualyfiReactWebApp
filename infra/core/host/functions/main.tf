@@ -12,11 +12,12 @@ data "azurerm_key_vault" "kv" {
   name                = var.key_vault_name
   resource_group_name = var.resource_group_name
 }
+/*
 locals {
   linux_fx_version = "${var.runtime_name}|${var.runtime_version}"
   managed_identity = length(var.key_vault_name) > 0
 }
-
+*/
 resource "azurerm_linux_web_app" "functions" {
   name                = var.name
   resource_group_name = var.resource_group_name
@@ -53,7 +54,7 @@ resource "azurerm_linux_web_app" "functions" {
       var.application_insights_name != "" ? { APPLICATIONINSIGHTS_CONNECTION_STRING = data.azurerm_application_insights.app_insights.connection_string } : {},
       var.key_vault_name != "" ? { AZURE_KEY_VAULT_ENDPOINT = data.azurerm_key_vault.kv.vault_uri } : {})
   
-  identity{ type= local.managed_identity ? "SystemAssigned" : "None" }
+  identity{ type= length(var.key_vault_name) > 0 ? "SystemAssigned" : "None" }
 
   logs {
     application_logs {
