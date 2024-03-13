@@ -94,13 +94,20 @@ variable "principal_id" {
   default     = ""
   description = "Id of the user or app to assign application roles"
 }
-
+/*
 variable "sql_admin_password" {
   type        = string
   description = "SQL Server administrator password"
   sensitive   = true
   validation {
-    condition     = length(var.sql_admin_password) >= 8 && length(var.sql_admin_password) <= 128 && length(var.sql_admin_password) >= 8 && regex(".*[A-Z].*", var.sql_admin_password) && regex(".*[a-z].*", var.sql_admin_password) && regex(".*[0-9].*", var.sql_admin_password)
+    condition     = (
+      length(var.sql_admin_password) >= 8 && 
+      length(var.sql_admin_password) <= 128 && 
+      length(var.sql_admin_password) >= 8 && 
+      regex(".*[A-Z].*", var.sql_admin_password) && 
+      regex(".*[a-z].*", var.sql_admin_password) && 
+      regex(".*[0-9].*", var.sql_admin_password)
+    )
     error_message = "Password must be between 8 and 128 characters long"
   }
 /*
@@ -109,15 +116,23 @@ variable "sql_admin_password" {
     error_message = "Password cannot contain the account name of the user"
   }
 */
-}
 
+/*
 variable "app_user_password" {
   type        = string
   description = "Application user password"
   sensitive   = true
   validation {
-    condition     = length(var.app_user_password) >= 8 && length(var.app_user_password) <= 128 && length(var.app_user_password) >= 8 && regex(".*[A-Z].*", var.app_user_password) && regex(".*[a-z].*", var.app_user_password) && regex(".*[0-9].*", var.app_user_password)
+    condition     = (
+      length(var.app_user_password) >= 8 && 
+      length(var.app_user_password) <= 128 && 
+      length(var.app_user_password) >= 8 && 
+      regex(".*[A-Z].*", var.app_user_password) && 
+      regex(".*[a-z].*", var.app_user_password) && 
+      regex(".*[0-9].*", var.app_user_password)
+    )
     error_message = "Password must be between 8 and 128 characters long"
   }
 
 }
+*/

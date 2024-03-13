@@ -4,16 +4,15 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "3.95.0"
     }
-    azapi = {
-      source = "Azure/azapi"
-      version = "1.12.1"
+    random = {
+      source = "hashicorp/random"
+      version = "3.6.0"
     }
   }
 }
 
-provider "azapi" {
+provider "random" {
   # Configuration options
-
 }
 provider "azurerm" {
   features {
@@ -32,6 +31,16 @@ resource "random_string" "rand" {
   lower   = true
   upper   = false
   numeric = false
+}
+resource "random_password" "sql_admin_password" {
+  length           = 16
+  special          = true
+  override_special = "!$#%"
+}
+resource "random_password" "app_user_password" {
+  length           = 16
+  special          = true
+  override_special = "!$#%"
 }
 resource "azurerm_resource_group" "rg" {
   name     = var.resource_group_name != "" ? var.resource_group_name : "${local.abbrs.resourcesResourceGroups}${var.environment_name}"
@@ -76,8 +85,8 @@ module "sql_server"{
   name = var.sql_server_name != "" ? var.sql_server_name : "${local.abbrs.sqlServers}${random_string.rand.result}"
   location = var.location
   database_name = var.sql_database_name
-  sql_admin_password = var.sql_admin_password
-  sql_user_password = var.app_user_password
+  sql_admin_password = random_password.sql_admin_password.result
+  sql_user_password = random_password.app_user_password.result
   key_vault_name = module.keyvault.name
 }
 // Create an App Service Plan to group applications under the same payment plan and SKU
