@@ -37,7 +37,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                         "inputs": [
                             {
                                 "name": "id",
-                                "value": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}"
+                                "value": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}"
                             },
                             {
                                 "name": "Version",
@@ -64,7 +64,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                             {
                                 "name": "ComponentId",
                                 "value": {
-                                    "Name": "${azurerm_application_insights.applicationinsights.name}",
+                                    "Name": "${azurerm_application_insights.app_insights.name}",
                                     "SubscriptionId": "${data.azurerm_subscription.current.subscription_id}",
                                     "ResourceGroup": "${var.resource_group_name}"
                                 }
@@ -94,14 +94,14 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                             {
                                 "name": "ComponentId",
                                 "value": {
-                                    "Name": "${azurerm_application_insights.applicationinsights.name}",
+                                    "Name": "${azurerm_application_insights.app_insights.name}",
                                     "SubscriptionId": "${data.azurerm_subscription.current.subscription_id}",
                                     "ResourceGroup": "${var.resource_group_name}"
                                 }
                             },
                             {
                                 "name": "ResourceId",
-                                "value": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}"
+                                "value": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}"
                             }
                         ],
                         "type": "Extension/AppInsightsExtension/PartType/QuickPulseButtonSmallPart",
@@ -123,7 +123,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                             {
                                 "name": "ComponentId",
                                 "value": {
-                                    "Name": "${azurerm_application_insights.applicationinsights.name}",
+                                    "Name": "${azurerm_application_insights.app_insights.name}",
                                     "SubscriptionId": "${data.azurerm_subscription.current.subscription_id}",
                                     "ResourceGroup": "${var.resource_group_name}"
                                 }
@@ -163,7 +163,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                             {
                                 "name": "ComponentId",
                                 "value": {
-                                    "Name": "${azurerm_application_insights.applicationinsights.name}",
+                                    "Name": "${azurerm_application_insights.app_insights.name}",
                                     "SubscriptionId": "${data.azurerm_subscription.current.subscription_id}",
                                     "ResourceGroup": "${var.resource_group_name}"
                                 }
@@ -224,7 +224,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                             {
                                 "name": "ComponentId",
                                 "value": {
-                                    "Name": "${azurerm_application_insights.applicationinsights.name}",
+                                    "Name": "${azurerm_application_insights.app_insights.name}",
                                     "SubscriptionId": "${data.azurerm_subscription.current.subscription_id}",
                                     "ResourceGroup": "${var.resource_group_name}"
                                 }
@@ -280,7 +280,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                         "inputs": [
                             {
                                 "name": "ResourceId",
-                                "value": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}"
+                                "value": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}"
                             },
                             {
                                 "name": "DataModel",
@@ -343,7 +343,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                         "inputs": [
                             {
                                 "name": "ResourceId",
-                                "value": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}"
+                                "value": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}"
                             },
                             {
                                 "name": "DataModel",
@@ -407,7 +407,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                             {
                                 "name": "ComponentId",
                                 "value": {
-                                    "Name": "${azurerm_application_insights.applicationinsights.name}",
+                                    "Name": "${azurerm_application_insights.app_insights.name}",
                                     "SubscriptionId": "${data.azurerm_subscription.current.subscription_id}",
                                     "ResourceGroup": "${var.resource_group_name}"
                                 }
@@ -445,7 +445,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                             {
                                 "name": "id",
                                 "value": {
-                                    "Name": "${azurerm_application_insights.applicationinsights.name}",
+                                    "Name": "${azurerm_application_insights.app_insights.name}",
                                     "SubscriptionId": "${data.azurerm_subscription.current.subscription_id}",
                                     "ResourceGroup": "${var.resource_group_name}"
                                 }
@@ -479,7 +479,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                                         "metrics": [
                                             {
                                                 "resourceMetadata": {
-                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}"
+                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}"
                                                 },
                                                 "name": "sessions/count",
                                                 "aggregationType": 5,
@@ -491,7 +491,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                                             },
                                             {
                                                 "resourceMetadata": {
-                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}"
+                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}"
                                                 },
                                                 "name": "users/count",
                                                 "aggregationType": 5,
@@ -527,7 +527,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                                                 "extensionName": "HubsExtension",
                                                 "bladeName": "ResourceMenuBlade",
                                                 "parameters": {
-                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}",
+                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}",
                                                     "menuid": "segmentationUsers"
                                                 }
                                             }
@@ -560,7 +560,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                                         "metrics": [
                                             {
                                                 "resourceMetadata": {
-                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}"
+                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}"
                                                 },
                                                 "name": "requests/failed",
                                                 "aggregationType": 7,
@@ -596,7 +596,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                                                 "extensionName": "HubsExtension",
                                                 "bladeName": "ResourceMenuBlade",
                                                 "parameters": {
-                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}",
+                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}",
                                                     "menuid": "failures"
                                                 }
                                             }
@@ -629,7 +629,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                                         "metrics": [
                                             {
                                                 "resourceMetadata": {
-                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}"
+                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}"
                                                 },
                                                 "name": "requests/duration",
                                                 "aggregationType": 4,
@@ -665,7 +665,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                                                 "extensionName": "HubsExtension",
                                                 "bladeName": "ResourceMenuBlade",
                                                 "parameters": {
-                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}",
+                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}",
                                                     "menuid": "performance"
                                                 }
                                             }
@@ -698,7 +698,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                                         "metrics": [
                                             {
                                                 "resourceMetadata": {
-                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}"
+                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}"
                                                 },
                                                 "name": "browserTimings/networkDuration",
                                                 "aggregationType": 4,
@@ -710,7 +710,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                                             },
                                             {
                                                 "resourceMetadata": {
-                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}"
+                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}"
                                                 },
                                                 "name": "browserTimings/processingDuration",
                                                 "aggregationType": 4,
@@ -722,7 +722,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                                             },
                                             {
                                                 "resourceMetadata": {
-                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}"
+                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}"
                                                 },
                                                 "name": "browserTimings/sendDuration",
                                                 "aggregationType": 4,
@@ -734,7 +734,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                                             },
                                             {
                                                 "resourceMetadata": {
-                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}"
+                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}"
                                                 },
                                                 "name": "browserTimings/receiveDuration",
                                                 "aggregationType": 4,
@@ -792,7 +792,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                                         "metrics": [
                                             {
                                                 "resourceMetadata": {
-                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}"
+                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}"
                                                 },
                                                 "name": "availabilityResults/availabilityPercentage",
                                                 "aggregationType": 4,
@@ -828,7 +828,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                                                 "extensionName": "HubsExtension",
                                                 "bladeName": "ResourceMenuBlade",
                                                 "parameters": {
-                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}",
+                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}",
                                                     "menuid": "availability"
                                                 }
                                             }
@@ -861,7 +861,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                                         "metrics": [
                                             {
                                                 "resourceMetadata": {
-                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}"
+                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}"
                                                 },
                                                 "name": "exceptions/server",
                                                 "aggregationType": 7,
@@ -873,7 +873,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                                             },
                                             {
                                                 "resourceMetadata": {
-                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}"
+                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}"
                                                 },
                                                 "name": "dependencies/failed",
                                                 "aggregationType": 7,
@@ -931,7 +931,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                                         "metrics": [
                                             {
                                                 "resourceMetadata": {
-                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}"
+                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}"
                                                 },
                                                 "name": "performanceCounters/processorCpuPercentage",
                                                 "aggregationType": 4,
@@ -943,7 +943,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                                             },
                                             {
                                                 "resourceMetadata": {
-                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}"
+                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}"
                                                 },
                                                 "name": "performanceCounters/processCpuPercentage",
                                                 "aggregationType": 4,
@@ -1001,7 +1001,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                                         "metrics": [
                                             {
                                                 "resourceMetadata": {
-                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}"
+                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}"
                                                 },
                                                 "name": "exceptions/browser",
                                                 "aggregationType": 7,
@@ -1059,7 +1059,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                                         "metrics": [
                                             {
                                                 "resourceMetadata": {
-                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}"
+                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}"
                                                 },
                                                 "name": "availabilityResults/count",
                                                 "aggregationType": 7,
@@ -1117,7 +1117,7 @@ resource "azurerm_dashboard" "app_insights_dashboard" {
                                         "metrics": [
                                             {
                                                 "resourceMetadata": {
-                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.applicationinsights.name}"
+                                                    "id": "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${azurerm_application_insights.app_insights.name}"
                                                 },
                                                 "name": "performanceCounters/processIOBytesPerSecond",
                                                 "aggregationType": 4,
