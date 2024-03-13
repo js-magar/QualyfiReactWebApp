@@ -25,13 +25,14 @@ locals {
   managed_identity = length(var.key_vault_name) > 0
 }
 */
-resource "azurerm_linux_web_app" "functions" {
+resource "azurerm_linux_function_app" "functions" {
   name                = var.name
   resource_group_name = var.resource_group_name
   location            = var.location
   service_plan_id     = var.app_service_plan_id
   https_only          = true
-
+  storage_account_name = data.azurerm_storage_account.storage.name
+  storage_account_access_key = data.azurerm_storage_account.storage.primary_access_key
   site_config {
     always_on         = var.always_on
     use_32_bit_worker = var.use_32_bit_worker_process
@@ -45,6 +46,10 @@ resource "azurerm_linux_web_app" "functions" {
     }
     minimum_tls_version =  "1.2"
     health_check_path = var.health_check_path
+    app_service_logs {
+      disk_quota_mb = 35
+      retention_period_days = 1
+    }
   }
 
   app_settings = merge( var.app_settings,
@@ -62,18 +67,4 @@ resource "azurerm_linux_web_app" "functions" {
       var.key_vault_name != "" ? { AZURE_KEY_VAULT_ENDPOINT = data.azurerm_key_vault.kv.vault_uri } : {})
   
   identity{ type= length(var.key_vault_name) > 0 ? "SystemAssigned" : "None" }
-
-  logs {
-    application_logs {
-      file_system_level = "Verbose"
-    }
-    detailed_error_messages = true
-    failed_request_tracing  = true
-    http_logs {
-      file_system {
-        retention_in_days = 1
-        retention_in_mb   = 35
-      }
-    }
-  }
 }
