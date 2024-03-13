@@ -1,5 +1,12 @@
 //Creates an Azure Function in an existing Azure App Service plan.
-
+terraform {
+  required_providers {
+    azurerm = {
+      version = "3.95.0"
+      source  = "hashicorp/azurerm"
+    }
+  }
+}
 data "azurerm_storage_account" "storage" {
   name                = var.storage_account_name
   resource_group_name = var.resource_group_name
