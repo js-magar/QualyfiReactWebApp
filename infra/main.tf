@@ -119,7 +119,7 @@ module "monitoring" {
 }
 // Creates Azure API Management (APIM) service to mediate the requests between the frontend and the backend API
 module "apim" {
-//  for_each = var.use_apim ? toset(["this"]) : []
+  count               = var.use_apim ? 1 : 0
   source              = "./core/gateway/apim"
   resource_group_name = azurerm_resource_group.rg.name
   name                = var.api_service_name != "" ? var.api_service_name : "${local.abbrs.apiManagementService}${random_string.rand.result}"

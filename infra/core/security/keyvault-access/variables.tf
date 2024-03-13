@@ -20,7 +20,7 @@ variable "permissions" {
   })
   description = "The permissions given"
   default = {
-    secrets = [ "Get", "List" ]
+    secrets = [ "Get","Set","List","Delete"]
   }
 }
 

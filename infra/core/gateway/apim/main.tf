@@ -52,14 +52,6 @@ resource "azurerm_api_management_logger" "apim_logger" {
   application_insights {
     instrumentation_key = data.azurerm_application_insights.app_insights.instrumentation_key
   }
-  /*
-  dynamic "credentials" {
-    for_each = var.application_insights_name != null ? [var.applicationInsights.properties.InstrumentationKey] : []
-    content {
-      instrumentation_key = credentials.key
-    }
-  }
-  */
 }
 
 data "azurerm_application_insights" "app_insights" {
