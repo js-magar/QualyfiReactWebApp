@@ -6,5 +6,5 @@ output "name" {
     value = "${azurerm_linux_web_app.functions.name}"
 }
 output "uri" {
-    value = "https://${azurerm_linux_web_app.functions.default_site_hostname}"
+    value = "https://${azurerm_linux_web_app.functions.default_hostname}"
 }
