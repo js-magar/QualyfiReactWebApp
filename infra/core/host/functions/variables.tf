@@ -146,5 +146,5 @@ variable "health_check_path" {
 variable "node_version" {
   description = "the application stack node version to set for the app service."
   type        = string
-  default     = "18-lts"
+  default     = "18"
 }
