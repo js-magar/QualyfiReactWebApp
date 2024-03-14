@@ -115,7 +115,7 @@ module "keyvault" {
   resource_group_name = azurerm_resource_group.rg.name
   name                = var.key_vault_name != "" ? var.key_vault_name : "${local.abbrs.keyVaultVaults}${random_string.rand.result}"
   location            = var.location
-  principal_id        = var.principal_id
+  principal_id        = module.api.identityPrincipalId
 }
 // Monitor application with Azure Monitor
 module "monitoring" {
