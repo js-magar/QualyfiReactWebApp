@@ -158,6 +158,18 @@ module "apim" {
 }
 // Configures the API in the Azure API Management (APIM) service
 //TO-Do
+module "apimApi" {
+  count                    = var.use_apim ? 1 : 0
+  source                   = "./core/gateway/apim-api"
+  name                     = module.apim[0].apim_service_name
+  resource_group_name      = azurerm_resource_group.rg.name
+  web_front_end_url        = module.web.uri
+  api_management_logger_id = module.apim[0].api_management_logger_id
+  api_name                 = "todo-api"
+  api_display_name         = "Simple Todo API"
+  api_path                 = "todo"
+  api_backend_url          = module.api.uri
+}
 
 
 

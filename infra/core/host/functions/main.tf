@@ -43,6 +43,7 @@ resource "azurerm_linux_function_app" "functions" {
       }
     application_stack {
       node_version = var.node_version
+      dotnet_version = var.runtime_version
     }
     minimum_tls_version =  "1.2"
     health_check_path = var.health_check_path
@@ -50,6 +51,7 @@ resource "azurerm_linux_function_app" "functions" {
       disk_quota_mb = 35
       retention_period_days = 1
     }
+    
   }
 
   app_settings = merge( var.app_settings,
