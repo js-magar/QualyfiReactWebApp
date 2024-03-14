@@ -34,7 +34,7 @@ resource "azurerm_linux_function_app" "functions" {
   storage_account_name = data.azurerm_storage_account.storage.name
   storage_account_access_key = data.azurerm_storage_account.storage.primary_access_key
   site_config {
-    always_on         = var.always_on
+    //always_on         = var.always_on
     use_32_bit_worker = var.use_32_bit_worker_process
     ftps_state        = "FtpsOnly"
     app_command_line  = var.app_command_line
