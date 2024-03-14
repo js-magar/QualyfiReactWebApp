@@ -42,7 +42,7 @@ resource "azurerm_linux_function_app" "functions" {
         allowed_origins= setunion([ "https://portal.azure.com", "https://ms.portal.azure.com" ], var.allowed_origins)
       }
     application_stack {
-      node_version = var.node_version
+      //node_version = var.node_version
       dotnet_version = var.runtime_version
     }
     minimum_tls_version =  "1.2"
