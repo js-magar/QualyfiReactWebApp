@@ -49,6 +49,7 @@ resource "azurerm_resource_deployment_script_azure_cli" "sql_deployment_script" 
             ./sqlcmd -S $4 -d $3 -U $6 -i ./initDb.sql
   EOF
 }
+/*
 data "azurerm_key_vault" "key_vault" {
   name                = var.key_vault_name
   resource_group_name = var.resource_group_name
@@ -70,3 +71,4 @@ resource "azurerm_key_vault_secret" "sqlAzureConnectionStringSercret" {
   value = "Server=tcp:${azurerm_sql_server.sql_server.fully_qualified_domain_name},1433;Initial Catalog=${azurerm_sql_database.db.name};Persist Security Info=False;User ID=${azurerm_sql_server.sql_server.administrator_login};Password=${azurerm_sql_server.sql_server.administrator_login_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
   key_vault_id = data.azurerm_key_vault.key_vault.id
 }
+*/

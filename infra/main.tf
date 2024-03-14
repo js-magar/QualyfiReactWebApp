@@ -78,6 +78,27 @@ module "api_keyvault_access" {
   key_vault_name = module.keyvault.name
   principal_id = module.api.identityPrincipalId
 }
+
+resource "azurerm_key_vault_secret" "sqlAdminPasswordSecret" {
+  name         = "sqlAdminPassword"
+  value        = random_password.sql_admin_password.result
+  key_vault_id = data.azurerm_key_vault.key_vault.id
+  depends_on = [ module.api_keyvault_access ]
+}
+resource "azurerm_key_vault_secret" "appUserPasswordSecret" {
+  name         = "appUserPassword"
+  value        = random_password.app_user_password.result
+  key_vault_id = data.azurerm_key_vault.key_vault.id
+  depends_on = [ module.api_keyvault_access ]
+}
+resource "azurerm_key_vault_secret" "sqlAzureConnectionStringSercret" {
+  name         = module.sql_server.connection_string_key
+  //value        = "Server=${sqlServer.properties.fullyQualifiedDomainName}; Database=${sqlServer::database.name}; User=${var.app_user}; Password=${var.sql_user_password}"
+  value = "Server=tcp:${module.sql_server.fully_qualified_domain_name},1433;Initial Catalog=${module.sql_server.databaseName};Persist Security Info=False;User ID=${module.sql_server.administrator_login};Password=${module.sql_server.administrator_login_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+  key_vault_id = data.azurerm_key_vault.key_vault.id
+  depends_on = [ module.api_keyvault_access ]
+}
+
 // The application database
 module "sql_server"{
   source = "./core/database/sqlserver"
@@ -88,7 +109,6 @@ module "sql_server"{
   sql_admin_password = random_password.sql_admin_password.result
   sql_user_password = random_password.app_user_password.result
   key_vault_name = module.keyvault.name
-  depends_on = [ module.api_keyvault_access ]
 }
 // Create an App Service Plan to group applications under the same payment plan and SKU
 module "app_service_plan"{
