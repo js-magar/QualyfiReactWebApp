@@ -1,18 +1,4 @@
 //Creates an Azure storage account.
-terraform {
-  required_providers {
-    azapi = {
-      source = "Azure/azapi"
-    }
-  }
-}
-
-provider "azapi" {
-}
-
-provider "azurerm" {
-  features {}
-}
 resource "azurerm_storage_account" "storage" {
   name                = var.name
   resource_group_name = var.resource_group_name

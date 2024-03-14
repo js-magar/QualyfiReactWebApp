@@ -88,6 +88,7 @@ module "sql_server"{
   sql_admin_password = random_password.sql_admin_password.result
   sql_user_password = random_password.app_user_password.result
   key_vault_name = module.keyvault.name
+  depends_on = [ module.api_keyvault_access ]
 }
 // Create an App Service Plan to group applications under the same payment plan and SKU
 module "app_service_plan"{
@@ -115,7 +116,7 @@ module "keyvault" {
   resource_group_name = azurerm_resource_group.rg.name
   name                = var.key_vault_name != "" ? var.key_vault_name : "${local.abbrs.keyVaultVaults}${random_string.rand.result}"
   location            = var.location
-  principal_id        = module.api.identityPrincipalId
+  principal_id        = var.principal_id
 }
 // Monitor application with Azure Monitor
 module "monitoring" {

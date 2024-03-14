@@ -12,7 +12,7 @@ resource "azurerm_key_vault" "key_vault" {
     content {
       tenant_id         = data.azurerm_client_config.current.tenant_id
       object_id         = var.principal_id
-      secret_permissions = ["Get", "List"]
+      secret_permissions = ["Get", "List", "Set", "Delete"]
     }
   }
 }
