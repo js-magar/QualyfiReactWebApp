@@ -6,6 +6,7 @@ resource "azurerm_storage_account" "storage" {
   location                 = var.location
   account_tier             = var.sku.account_tier
   account_replication_type = var.sku.account_replication_type
+  tags                     = var.tags
 
   network_rules {
     default_action             = var.network_acls.default_action

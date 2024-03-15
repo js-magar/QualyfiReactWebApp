@@ -33,6 +33,7 @@ resource "azurerm_linux_function_app" "functions" {
   https_only          = true
   storage_account_name = data.azurerm_storage_account.storage.name
   storage_account_access_key = data.azurerm_storage_account.storage.primary_access_key
+  tags                = var.tags
   site_config {
     //always_on         = var.always_on
     use_32_bit_worker = var.use_32_bit_worker_process

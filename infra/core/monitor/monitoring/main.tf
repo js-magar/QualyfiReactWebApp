@@ -7,6 +7,7 @@ resource "azurerm_log_analytics_workspace" "log_analytics" {
   resource_group_name = var.resource_group_name
   sku                 = "PerGB2018"
   retention_in_days   = 30
+  tags                = var.tags
 }
 
 resource "azurerm_application_insights" "app_insights" {
@@ -15,11 +16,13 @@ resource "azurerm_application_insights" "app_insights" {
   resource_group_name = var.resource_group_name
   application_type    = "web"
   workspace_id = azurerm_log_analytics_workspace.log_analytics.id
+  tags                = var.tags
 }
 resource "azurerm_dashboard" "app_insights_dashboard" {
   name                = var.application_insights_dashboard_name
   location            = var.location
   resource_group_name = var.resource_group_name
+  tags                = var.tags
   dashboard_properties = <<DASH
 {
     "lenses": {

@@ -25,3 +25,8 @@ variable "application_insights_dashboard_name" {
   default = ""
 }
 
+
+variable "tags" {
+  description = "A list of tags used for deployed services."
+  type        = map(string)
+}

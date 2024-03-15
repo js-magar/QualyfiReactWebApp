@@ -12,6 +12,10 @@ variable "resource_group_name" {
   type = string
   description = "The rg name"
 }
+variable "tags" {
+  description = "A list of tags used for deployed services."
+  type        = map(string)
+}
 
 variable "publisher_email" {
   type = string

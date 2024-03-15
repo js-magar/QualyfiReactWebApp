@@ -27,3 +27,7 @@ variable "reserved" {
   type = string
 }
 
+variable "tags" {
+  description = "A list of tags used for deployed services."
+  type        = map(string)
+}

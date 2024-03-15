@@ -5,6 +5,7 @@ resource "azurerm_sql_server" "sql_server" {
   version = "12.0"
   administrator_login = var.sql_admin
   administrator_login_password = var.sql_admin_password
+  tags                = var.tags
 }
 resource "azurerm_sql_firewall_rule" "firewall_rule" {
 // Allow all clients
@@ -21,12 +22,14 @@ resource "azurerm_sql_database" "db" {
   resource_group_name = var.resource_group_name
   location            = var.location
   server_name         = azurerm_sql_server.sql_server.name
+  tags                = var.tags
 }
 
 resource "azurerm_resource_deployment_script_azure_cli" "sql_deployment_script" {
   name                = "${var.name}-deployment-script"
   resource_group_name = var.resource_group_name
   location            = var.location
+  tags                = var.tags
   version             = "2.37.0"
   retention_interval  = "PT1H" // Retain the script resource for 1 hour after it ends running
   command_line        = "'${var.app_user}' '${var.sql_user_password}' '${var.database_name}' '${azurerm_sql_server.sql_server.fully_qualified_domain_name}' '${var.sql_admin_password}' '${var.sql_admin}'"//APPUSERNAME, APPUSERPASSWORD, DBNAME, DBSERVER, SQLCMDPASSWORD, SQLADMIN

@@ -105,3 +105,7 @@ variable "sku" {
     account_tier = "Standard"
   }
 }
+variable "tags" {
+  description = "A list of tags used for deployed services."
+  type        = map(string)
+}

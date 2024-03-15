@@ -20,8 +20,9 @@ provider "azurerm" {
   }
 }
 locals {
-  abbreviations_json = file("${path.module}/abbreviations.json")
-  abbrs              = jsondecode(local.abbreviations_json)
+  abbreviations_json            = file("${path.module}/abbreviations.json")
+  abbrs                         = jsondecode(local.abbreviations_json)
+  tags                          = { azd-env-name : var.environment_name }
 }
 data "azurerm_client_config" "current" {}
 data "azurerm_subscription" "current" {}
@@ -45,6 +46,7 @@ resource "random_password" "app_user_password" {
 resource "azurerm_resource_group" "rg" {
   name     = var.resource_group_name != "" ? var.resource_group_name : "${local.abbrs.resourcesResourceGroups}${var.environment_name}"
   location = var.location
+  tags = local.tags
 }
 
 // The application frontend
@@ -53,6 +55,7 @@ module "web" {
   resource_group_name = azurerm_resource_group.rg.name
   name                = var.web_service_name != "" ? var.web_service_name : "${local.abbrs.webStaticSites}web-${random_string.rand.result}"
   location            = var.location
+  tags               = merge(local.tags, { azd-service-name : "web" })
 }
 // The application backend
 module "api"{
@@ -70,6 +73,7 @@ module "api"{
     }
   runtime_name = "dotnet-isolated"
   runtime_version = "8.0"
+  tags               = merge(local.tags, { "azd-service-name" : "api" })
 }
 // Give the API access to KeyVault
 module "api_keyvault_access" {
@@ -109,6 +113,7 @@ module "sql_server"{
   sql_admin_password = random_password.sql_admin_password.result
   sql_user_password = random_password.app_user_password.result
   key_vault_name = module.keyvault.name
+  tags           = azurerm_resource_group.rg.tags
 }
 // Create an App Service Plan to group applications under the same payment plan and SKU
 module "app_service_plan"{
@@ -122,6 +127,7 @@ module "app_service_plan"{
       tier = "Dynamic"
     }
   kind = "Linux"
+  tags           = azurerm_resource_group.rg.tags
 }
 // Backing storage for Azure functions backend API
 module "storage" {
@@ -129,6 +135,7 @@ module "storage" {
   resource_group_name = azurerm_resource_group.rg.name
   name                = var.storage_account_name != "" ? var.storage_account_name : "${local.abbrs.storageStorageAccounts}${random_string.rand.result}"
   location            = var.location
+  tags                = azurerm_resource_group.rg.tags
 }
 // Store secrets in a keyvault
 module "keyvault" {
@@ -137,6 +144,7 @@ module "keyvault" {
   name                = var.key_vault_name != "" ? var.key_vault_name : "${local.abbrs.keyVaultVaults}${random_string.rand.result}"
   location            = var.location
   principal_id        = var.principal_id
+  tags             = azurerm_resource_group.rg.tags
 }
 // Monitor application with Azure Monitor
 module "monitoring" {
@@ -146,6 +154,7 @@ module "monitoring" {
   log_analytics_name = var.log_analytics_name != "" ? var.log_analytics_name : "${local.abbrs.operationalInsightsWorkspaces}${random_string.rand.result}"
   application_insights_dashboard_name = var.application_insights_dashboard_name != "" ? var.application_insights_dashboard_name : "${local.abbrs.portalDashboards}${random_string.rand.result}"
   application_insights_name = var.application_insights_name != "" ? var.application_insights_name : "${local.abbrs.insightsComponents}${random_string.rand.result}"
+  tags             = azurerm_resource_group.rg.tags
 }
 // Creates Azure API Management (APIM) service to mediate the requests between the frontend and the backend API
 module "apim" {
@@ -155,6 +164,7 @@ module "apim" {
   name                = var.api_service_name != "" ? var.api_service_name : "${local.abbrs.apiManagementService}${random_string.rand.result}"
   location            = var.location
   application_insights_name = module.monitoring.application_insights_name
+  tags                      = merge(local.tags, { "azd-service-name" : var.environment_name })
 }
 // Configures the API in the Azure API Management (APIM) service
 //TO-Do

@@ -41,3 +41,8 @@ variable "sql_admin_password" {
 variable "sql_user_password" {
   type = string
 }
+
+variable "tags" {
+  description = "A list of tags used for deployed services."
+  type        = map(string)
+}
