@@ -5,7 +5,14 @@ terraform {
       version = "3.95.0"
       source  = "hashicorp/azurerm"
     }
+    azapi = {
+      source = "Azure/azapi"
+      version = "1.13.1"
+    }
   }
+}
+provider "azapi" {
+  # Configuration options
 }
 data "azurerm_storage_account" "storage" {
   name                = var.storage_account_name
