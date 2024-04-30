@@ -90,7 +90,8 @@ resource "null_resource" "webapp_basic_auth_disable" {
   }
 }
 */
-resource "azapi_resource" "symbolicname" {
+/*
+resource "azapi_resource" "webapp_basic_auth_disable_ftp" {
   type = "Microsoft.Web/sites/basicPublishingCredentialsPolicies@2022-09-01"
   name = "ftp"
   parent_id = azurerm_linux_function_app.functions.id
@@ -112,3 +113,4 @@ resource "azapi_resource" "webapp_basic_auth_disable_scm" {
 //    kind = "string"
   })
 }
+*/
