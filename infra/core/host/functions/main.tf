@@ -42,6 +42,7 @@ resource "azurerm_linux_function_app" "functions" {
   storage_account_access_key = data.azurerm_storage_account.storage.primary_access_key
   tags                = var.tags
   ftp_publish_basic_authentication_enabled = false
+  public_network_access_enabled = true
   site_config {
     //always_on         = var.always_on
     use_32_bit_worker = var.use_32_bit_worker_process
