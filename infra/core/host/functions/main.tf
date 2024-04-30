@@ -60,9 +60,7 @@ resource "azurerm_linux_function_app" "functions" {
       disk_quota_mb = 35
       retention_period_days = 1
     }
-    scm_ip_restriction{
-      action = "Deny"
-    }
+    scm_ip_restriction_default_action = "Deny"
     
   }
 
