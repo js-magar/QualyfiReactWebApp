@@ -9,7 +9,7 @@ The following prerequisites are required to use this application. Please ensure 
 - [Azure Functions Core Tools (4+)](https://docs.microsoft.com/azure/azure-functions/functions-run-local)
 - [Node.js with npm (18.17.1+)](https://nodejs.org/) - for the Web frontend
 
-Deploy to West Europe
+Deploy to East US 2
 
 Log in to azd. Only required once per-install.
 
@@ -20,7 +20,7 @@ azd auth login
 First-time project setup. Initialize a project in the current directory, using this template.
 
 ```bash
-azd init --template Azure-Samples/todo-csharp-sql-swa-func
+azd init --template js-magar/QualyfiReactWebApp
 ```
 
 Provision and deploy to Azure

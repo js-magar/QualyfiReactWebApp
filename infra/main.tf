@@ -8,10 +8,16 @@ terraform {
       source = "hashicorp/random"
       version = "3.6.0"
     }
+    azapi = {
+      source = "Azure/azapi"
+    }
   }
 }
 
 provider "random" {
+  # Configuration options
+}
+provider "azapi" {
   # Configuration options
 }
 provider "azurerm" {

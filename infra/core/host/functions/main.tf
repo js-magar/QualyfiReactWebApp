@@ -71,7 +71,7 @@ resource "azurerm_linux_function_app" "functions" {
   
   identity{ type= length(var.key_vault_name) > 0 ? "SystemAssigned" : "None" }
 }
-
+/*
 # This is a temporary solution until the azurerm provider supports the basicPublishingCredentialsPolicies resource type
 resource "null_resource" "webapp_basic_auth_disable" {
   triggers = {
@@ -81,4 +81,27 @@ resource "null_resource" "webapp_basic_auth_disable" {
   provisioner "local-exec" {
     command = "az resource update --resource-group ${var.resource_group_name} --name ftp --namespace Microsoft.Web --resource-type basicPublishingCredentialsPolicies --parent sites/${azurerm_linux_function_app.functions.name} --set properties.allow=false && az resource update --resource-group ${var.resource_group_name} --name scm --namespace Microsoft.Web --resource-type basicPublishingCredentialsPolicies --parent sites/${azurerm_linux_function_app.functions.name} --set properties.allow=false"
   }
+}
+*/
+resource "azapi_resource" "symbolicname" {
+  type = "Microsoft.Web/sites/basicPublishingCredentialsPolicies@2022-09-01"
+  name = "ftp"
+  parent_id = azurerm_linux_function_app.functions.id
+  body = jsonencode({
+    properties = {
+      allow = false
+    }
+  })
+}
+
+resource "azapi_resource" "webapp_basic_auth_disable_scm" {
+  type = "Microsoft.Web/sites/basicPublishingCredentialsPolicies@2022-09-01"
+  name = "scm"
+  parent_id = azurerm_linux_function_app.functions.id
+  body = jsonencode({
+    properties = {
+      allow = false
+    }
+//    kind = "string"
+  })
 }
