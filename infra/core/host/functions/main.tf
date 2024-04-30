@@ -41,6 +41,7 @@ resource "azurerm_linux_function_app" "functions" {
   storage_account_name = data.azurerm_storage_account.storage.name
   storage_account_access_key = data.azurerm_storage_account.storage.primary_access_key
   tags                = var.tags
+  ftp_publish_basic_authentication_enabled = false
   site_config {
     //always_on         = var.always_on
     use_32_bit_worker = var.use_32_bit_worker_process
@@ -58,6 +59,9 @@ resource "azurerm_linux_function_app" "functions" {
     app_service_logs {
       disk_quota_mb = 35
       retention_period_days = 1
+    }
+    scm_ip_restriction{
+      action = "Deny"
     }
     
   }
@@ -90,25 +94,3 @@ resource "null_resource" "webapp_basic_auth_disable" {
   }
 }
 */
-resource "azapi_resource" "webapp_basic_auth_disable_ftp" {
-  type = "Microsoft.Web/sites/basicPublishingCredentialsPolicies@2022-09-01"
-  name = "ftp"
-  parent_id = azurerm_linux_function_app.functions.id
-  body = jsonencode({
-    properties = {
-      allow = false
-    }
-  })
-}
-
-resource "azapi_resource" "webapp_basic_auth_disable_scm" {
-  type = "Microsoft.Web/sites/basicPublishingCredentialsPolicies@2022-09-01"
-  name = "scm"
-  parent_id = azurerm_linux_function_app.functions.id
-  body = jsonencode({
-    properties = {
-      allow = false
-    }
-//    kind = "string"
-  })
-}
